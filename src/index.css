@@ -17,6 +17,14 @@ body {
   color: #333;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
 ol,
 ul {
   list-style: none;
@@ -72,6 +80,7 @@ a {
   margin: 20px 0;
   border-bottom: 1px solid #fafafa;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .blog-preview:hover {
