@@ -1,11 +1,4 @@
-// { blogs, title } we can use object destructuring
-const BlogList = (props) => {
-  const blogs = props.blogs
-  const title = props.title
-
-  console.log('Props: ', props)
-  console.log('Blogs: ', blogs)
-
+const BlogList = ({ blogs, title, handleDelete }) => {
   return (
     <ul className="blog-list">
       <h2>{title}</h2>
@@ -13,6 +6,9 @@ const BlogList = (props) => {
         <li className="blog-preview" key={blog.id}>
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
+          <button type="button" onClick={() => handleDelete(blog.id)}>
+            Delete blog
+          </button>
         </li>
       ))}
     </ul>
