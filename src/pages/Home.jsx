@@ -24,25 +24,23 @@ const Home = () => {
     }
   ])
 
-  const [name, setName] = useState('Azamat')
-
   const handleDelete = (id) => {
     console.log(id)
     const newBlogs = blogs.filter((blog) => blog.id !== id)
     setBlogs(newBlogs)
   }
 
-  // useEffect runs only name state changes
-  useEffect(() => {
-    console.log('useEffect ran')
-    console.log(name)
-  }, [name])
+  // npx json-server --watch data/db.json --port 8000
+  // Endpoints
+  // /blogs - GET - Fetch all blogs
+  // /blogs/{id} - GET - Fetch a single blog
+  // /blogs - POST - Add a new blog
+  // /blogs/{id} - DELETE - Delete a blog
+  useEffect(() => {}, [])
 
   return (
     <div className="home">
       <BlogList blogs={blogs} title="All Blogs!" handleDelete={handleDelete} />
-      <button onClick={() => setName('Yudaev')}>Change name</button>
-      <p>{name}</p>
     </div>
   )
 }
