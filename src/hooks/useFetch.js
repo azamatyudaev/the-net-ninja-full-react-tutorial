@@ -7,8 +7,10 @@ const useFetch = (url) => {
 
   // npx json-server --watch data/db.json --port 8000
   useEffect(() => {
+    const abortController = new AbortController()
+
     setTimeout(() => {
-      fetch(url)
+      fetch(url, { signal: abortController.signal })
         .then((response) => {
           console.log(response)
           if (!response.ok) {
@@ -23,11 +25,20 @@ const useFetch = (url) => {
           setError(null)
         })
         .catch((err) => {
-          console.log(err.message)
-          setError(err.message)
-          setLoading(false)
+          // console.log(err.message)
+          if (err.name === 'AbortError') {
+            console.log('Fetch Aborted')
+          } else {
+            setLoading(false)
+            setError(err.message)
+          }
         })
     }, 1000)
+
+    return () => {
+      console.log('Clean Up')
+      abortController.abort()
+    }
   }, [url])
 
   return {
